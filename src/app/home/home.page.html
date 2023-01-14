@@ -1,0 +1,35 @@
+<ion-header [style.visibility]="content_visibility">
+  <ion-toolbar>
+    <ion-title>
+      Scan QR Code
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light" [style.visibility]="content_visibility">
+  <ion-card class="ion-text-center">
+    <ion-card-content>
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="myAngularxQrCode"
+          placeholder="Type Random Text to genrate QR code"></ion-input>
+      </ion-item>
+      <qrcode *ngIf="myAngularxQrCode" [qrdata]="myAngularxQrCode" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    </ion-card-content>
+  </ion-card>
+  <ion-card class="ion-text-center">
+    <ion-card-content>
+      <ion-button color="light" expand="block" class="ion-margin" (click)="startScan()">
+        <ion-icon name="qr-code-outline"> </ion-icon> 
+        Tap to Scane QR Code Here 
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-item *ngIf="scannedResult">
+        <ion-label class="ion-text-wrap">Scanned Result: {{scannedResult}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
