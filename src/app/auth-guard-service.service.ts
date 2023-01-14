@@ -14,7 +14,7 @@ export class AuthGuardServiceService implements CanLoad {
     if (ret.value != undefined) {
       return true
     } else {
-      this.router.navigate(['/login-page']);
+      // this.router.navigate(['/login-page']);
       return false
     }
   }

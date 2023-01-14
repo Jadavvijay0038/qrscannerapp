@@ -45,7 +45,6 @@ export class LoginPagePage implements OnInit {
       return;
     }
     if (flag) {
-
       await Preferences.set({
         key: 'loginCredential',
         value: JSON.stringify(this.loginform.value)

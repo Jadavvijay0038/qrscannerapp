@@ -29,6 +29,7 @@
     "@capacitor/preferences": "^4.0.2",
     "@capacitor/splash-screen": "^4.1.2",
     "@capacitor/status-bar": "4.1.1",
+    "@capgo/capacitor-flash": "^1.2.27",
     "@ionic/angular": "^6.1.9",
     "angularx-qrcode": "^15.0.1",
     "ionicons": "^6.0.3",

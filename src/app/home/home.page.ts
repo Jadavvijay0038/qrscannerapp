@@ -1,5 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Resolve } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
+import { CapacitorFlash } from '@capgo/capacitor-flash'
 
 
 
@@ -10,13 +12,9 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 })
 export class HomePage implements OnDestroy {
   public myAngularxQrCode: any | undefined;
-  scannedResult: any;
-  content_visibility = '';
+  public scannedResult: any;
+  public content_visibility = '';
   constructor() { }
-
-  genrateQrcode() {
-    this.myAngularxQrCode = "hello my name is vijay";
-  }
 
   async checkPermission() {
     try {
@@ -60,6 +58,13 @@ export class HomePage implements OnDestroy {
     BarcodeScanner.stopScan();
     document.querySelector('body')?.classList.remove('scanner-active');
     this.content_visibility = '';
+  }
+
+  async useflashlight() {
+    let status = await CapacitorFlash.isAvailable();
+    if (status) {
+      CapacitorFlash.toggle();
+    }
   }
 
   ngOnDestroy(): void {
