@@ -14,6 +14,7 @@ export class HomePage implements OnDestroy {
   public myAngularxQrCode: any | undefined;
   public scannedResult: any;
   public content_visibility = '';
+  showbutton: boolean = false;
   constructor() { }
 
   async checkPermission() {
@@ -38,6 +39,7 @@ export class HomePage implements OnDestroy {
       await BarcodeScanner.hideBackground();
       document.querySelector('body')?.classList.add('scanner-active');
       this.content_visibility = 'hidden';
+      this.showbutton = true;
       const result = await BarcodeScanner.startScan();
       console.log(result);
       BarcodeScanner.showBackground();
@@ -47,6 +49,8 @@ export class HomePage implements OnDestroy {
         this.scannedResult = result.content;
         console.log(this.scannedResult);
       }
+      this.showbutton = false;
+
     } catch (e) {
       console.log(e);
       this.stopScan();
@@ -58,6 +62,8 @@ export class HomePage implements OnDestroy {
     BarcodeScanner.stopScan();
     document.querySelector('body')?.classList.remove('scanner-active');
     this.content_visibility = '';
+    this.showbutton = false;
+
   }
 
   async useflashlight() {

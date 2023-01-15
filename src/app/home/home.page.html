@@ -24,9 +24,9 @@
       </ion-button>
     </ion-card-content>
   </ion-card>
-  <ion-card>
+  <ion-card *ngIf="scannedResult">
     <ion-card-content>
-      <ion-item *ngIf="scannedResult">
+      <ion-item>
         <ion-label class="ion-text-wrap"> Scanned Result: {{scannedResult}}</ion-label>
       </ion-item>
     </ion-card-content>
@@ -34,9 +34,9 @@
 </ion-content>
 
 <ion-footer>
-  <ion-card>
-    <ion-card-content>
-      <ion-button color="light" expand="block" class="ion-margin" (click)="useflashlight()">use Flashlight</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <!-- <ion-card> -->
+    <!-- <ion-card-content> -->
+      <ion-button color="light" *ngIf="showbutton" expand="block" class="ion-margin" (click)="stopScan()">stopScan</ion-button>
+    <!-- </ion-card-content> -->
+  <!-- </ion-card> -->
 </ion-footer>
