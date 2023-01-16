@@ -12,6 +12,7 @@ export class AuthGuardServiceService implements CanLoad {
   async canLoad(route: Route): Promise<boolean> {
     const ret = await Preferences.get({ key: 'loginCredential' });
     if (ret.value != undefined) {
+      this.router.navigate(['/home']);
       return true
     } else {
       // this.router.navigate(['/login-page']);
