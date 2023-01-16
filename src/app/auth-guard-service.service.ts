@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, Router } from '@angular/router';
-import { Preferences } from '@capacitor/preferences';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { Location } from '@angular/common'
+import { AuthServiceService } from './auth-service.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardServiceService implements CanLoad {
+export class AuthGaurdService implements CanActivate {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private location: Location, private auth: AuthServiceService) {
   }
-  async canLoad(route: Route): Promise<boolean> {
-    const ret = await Preferences.get({ key: 'loginCredential' });
-    if (ret.value != undefined) {
-      this.router.navigate(['/home']);
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    if (await this.auth.userislogedin()) {
+      this.location.back()
       return true
-    } else {
-      // this.router.navigate(['/login-page']);
-      return false
     }
+    return false
   }
 }
