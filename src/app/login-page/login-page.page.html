@@ -9,36 +9,36 @@
     <ion-card-header class="logincard-header">
       <ion-card-title>User Login</ion-card-title>
     </ion-card-header>
-    <ion-card-content class=".logincard-body">
+    <ion-card-content class="logincard-body">
       <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label position="floating">Email</ion-label>
           <ion-input type="email" placeholder="Enter Username" formControlName="email"></ion-input>
         </ion-item>
-        <div
-          *ngIf=" (loginform.controls['email'].dirty || loginform.controls['email'].touched) && loginform.controls['email'].invalid"
-          class="alert alert-danger">Please Enter Valid Email </div>
-        <div *ngIf="(loginform.controls['email'].dirty || loginform.controls['email'].touched)"
+        <div *ngIf="loginform.get('email')!.invalid && (loginform.get('email')!.dirty || loginform.get('email')!.touched)"
           class="alert alert-danger">
-          <div *ngIf="loginform.controls['email'].errors?.required ">
+          <div *ngIf="loginform.get('email')!.errors!.required">
             Email is required.
           </div>
+          <div *ngIf="loginform.get('email')!.errors!.email">
+            Please enter a valid email.
+          </div>
         </div>
-        <br>
         <ion-item>
           <ion-label position="floating">Password</ion-label>
           <ion-input type="password" formControlName="password" placeholder="Enter Password"></ion-input>
         </ion-item>
         <div
-          *ngIf="loginform.controls['password'].invalid && (loginform.controls['password'].dirty || loginform.controls['password'].touched)"
+          *ngIf="loginform.get('password')!.invalid && (loginform.get('password')!.dirty || loginform.get('password')!.touched)"
           class="alert alert-danger">
-          <div *ngIf="loginform.controls['password'].errors.required">
+          <div *ngIf="loginform.get('password')!.errors!.required">
             Password is required.
           </div>
         </div>
-        <br>
-        <ion-button [disabled]="loginform.invalid" (click)="onSubmit()" color="primary" expand="block"> Login <ion-icon
-            name="log-in-outline"></ion-icon></ion-button>
+        <ion-button [disabled]="loginform.invalid" (click)="onSubmit()" color="primary" expand="block">
+          Login
+          <ion-icon name="log-in-outline"></ion-icon>
+        </ion-button>
       </form>
     </ion-card-content>
   </ion-card>

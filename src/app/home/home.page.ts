@@ -1,9 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Resolve } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { CapacitorFlash } from '@capgo/capacitor-flash'
-
-
 
 @Component({
   selector: 'app-home',
@@ -11,19 +8,15 @@ import { CapacitorFlash } from '@capgo/capacitor-flash'
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnDestroy {
-  public myAngularxQrCode: any | undefined;
-  public scannedResult: any;
-  public content_visibility = '';
-  showbutton: boolean = false;
-  constructor() { }
+  myAngularxQrCode:string = ''
+  scannedResult: any = null;
+  showbutton = false;
+  content_visibility: string ='';
 
   async checkPermission() {
     try {
-      const status = await BarcodeScanner.checkPermission({ force: true });
-      if (status.granted) {
-        return true;
-      }
-      return false;
+      const { granted } = await BarcodeScanner.checkPermission({ force: true });
+      return granted;
     } catch (e) {
       console.log(e);
       return false;
@@ -32,8 +25,7 @@ export class HomePage implements OnDestroy {
 
   async startScan() {
     try {
-      const permission = await this.checkPermission();
-      if (!permission) {
+      if (!await this.checkPermission()) {
         return;
       }
       await BarcodeScanner.hideBackground();
@@ -47,10 +39,8 @@ export class HomePage implements OnDestroy {
       this.content_visibility = '';
       if (result?.hasContent) {
         this.scannedResult = result.content;
-        console.log(this.scannedResult);
       }
-      this.showbutton = false;
-
+      this.stopScan();
     } catch (e) {
       console.log(e);
       this.stopScan();
@@ -63,7 +53,6 @@ export class HomePage implements OnDestroy {
     document.querySelector('body')?.classList.remove('scanner-active');
     this.content_visibility = '';
     this.showbutton = false;
-
   }
 
   async useflashlight() {
@@ -73,8 +62,7 @@ export class HomePage implements OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.stopScan();
   }
-
 }
