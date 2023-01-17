@@ -1,6 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { CapacitorFlash } from '@capgo/capacitor-flash'
 
 @Component({
   selector: 'app-home',
@@ -8,10 +7,10 @@ import { CapacitorFlash } from '@capgo/capacitor-flash'
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnDestroy {
-  myAngularxQrCode:string = ''
+  myAngularxQrCode: string = ''
   scannedResult: any = null;
   showbutton = false;
-  content_visibility: string ='';
+  content_visibility: string = '';
 
   async checkPermission() {
     try {
@@ -56,9 +55,9 @@ export class HomePage implements OnDestroy {
   }
 
   async useflashlight() {
-    let status = await CapacitorFlash.isAvailable();
+    let status = await BarcodeScanner.getTorchState();
     if (status) {
-      CapacitorFlash.toggle();
+      BarcodeScanner.toggleTorch();
     }
   }
 
