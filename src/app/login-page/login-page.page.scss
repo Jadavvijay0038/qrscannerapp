@@ -1,24 +1,25 @@
-// .logincard {
-//     transform: translateX(-50%) translateY(-50%);
-//     top: 50%;
-//     left: 50%;
-//     position: absolute;
-// }
+.logincard {
+    transform: translateX(-50%) translateY(-50%);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    min-width:250px;
+}
 
-// .logincard-header {
-//     position: relative;
-//     text-align: center;
-//     top: 36%;
-//     font-size: 3.0em;
-//     width: 100%;
-//     font-weight: bold;
-//     color: red;
-// }
+.logincard-header {
+    position: relative;
+    text-align: center;
+    top: 36%;
+    font-size: 3.0em;
+    width: 100%;
+    font-weight: bold;
+    color: red;
+}
 
-// .logincard-body {
-//     font-size: 1.0em;
-//     text-align: center;
-//     position: relative;
-//     top: 52%;
-//     width: 100%;
-// }
+.logincard-body {
+    font-size: 1.0em;
+    text-align: center;
+    position: relative;
+    top: 52%;
+    width: 100%;
+}

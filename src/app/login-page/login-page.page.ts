@@ -32,12 +32,12 @@ export class LoginPagePage implements OnInit {
     this.errormsg = '';
     if (this.loginform.value.email !== LoginPagePage.USERNAME) {
       this.errormsg = 'Wrong email';
-      await this.presentToast('top');
+      await this.presentToast('bottom');
       return;
     }
     if (this.loginform.value.password !== LoginPagePage.PASSWORD) {
       this.errormsg = 'Wrong password';
-      await this.presentToast('top');
+      await this.presentToast('bottom');
       return;
     }
 
@@ -49,11 +49,11 @@ export class LoginPagePage implements OnInit {
     this.loginform.reset();
   }
 
-  async presentToast(position: 'top') {
+  async presentToast(position: 'bottom') {
     const toast = await this.toastController.create({
       message: this.errormsg,
       duration: 1500,
-      position
+      position,
     });
     await toast.present();
   }
