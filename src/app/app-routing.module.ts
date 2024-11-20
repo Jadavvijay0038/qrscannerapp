@@ -6,25 +6,29 @@ import { LoginPagePage } from './login-page/login-page.page';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthGaurdService]
+    loadChildren: () =>
+      import('./home/home.module').then((m) => m.HomePageModule),
+    canActivate: [AuthGaurdService],
   },
   { path: '**', component: LoginPagePage },
   {
     path: '',
     redirectTo: 'login-page',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'login-page',
-    loadChildren: () => import('./login-page/login-page.module').then(m => m.LoginPagePageModule)
+    loadChildren: () =>
+      import('./login-page/login-page.module').then(
+        (m) => m.LoginPagePageModule
+      ),
   },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

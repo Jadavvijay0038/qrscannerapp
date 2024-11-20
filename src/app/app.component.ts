@@ -6,14 +6,12 @@ import { SplashScreen } from '@capacitor/splash-screen';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent implements OnInit{
-  constructor() {}
+export class AppComponent implements OnInit {
+  constructor() { }
   async ngOnInit(): Promise<void> {
     await SplashScreen.show({
       showDuration: 2000,
       autoHide: true,
     });
   }
-
-
 }

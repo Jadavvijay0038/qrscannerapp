@@ -30,23 +30,25 @@ export class LoginPagePage implements OnInit {
 
   async onSubmit() {
     this.errormsg = '';
-    if (this.loginform.value.email !== LoginPagePage.USERNAME) {
-      this.errormsg = 'Wrong email';
-      await this.presentToast('bottom');
-      return;
-    }
-    if (this.loginform.value.password !== LoginPagePage.PASSWORD) {
-      this.errormsg = 'Wrong password';
-      await this.presentToast('bottom');
-      return;
-    }
+    if (this.loginform) {
+      if (this.loginform.value.email !== LoginPagePage.USERNAME) {
+        this.errormsg = 'Wrong email';
+        await this.presentToast('bottom');
+        return;
+      }
+      if (this.loginform.value.password !== LoginPagePage.PASSWORD) {
+        this.errormsg = 'Wrong password';
+        await this.presentToast('bottom');
+        return;
+      }
 
-    await Preferences.set({
-      key: 'loginCredential',
-      value: JSON.stringify(this.loginform.value)
-    });
-    this.router.navigate(['/home']);
-    this.loginform.reset();
+      await Preferences.set({
+        key: 'loginCredential',
+        value: JSON.stringify(this.loginform.value)
+      });
+      this.router.navigate(['/home']);
+      this.loginform.reset();
+    }
   }
 
   async presentToast(position: 'bottom') {
